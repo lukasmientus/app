@@ -8,7 +8,14 @@ let pumpVisualTimer = null;
 function showPage(id) {
   pages.forEach((page) => page.classList.toggle('active', page.id === id));
   window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (id === 'halvesPage') {
+    requestAnimationFrame(() => {
+      positionPumpOverlaySafe();
+    });
+  }
 }
+
 navButtons.forEach((button) => button.addEventListener('click', () => showPage(button.dataset.target)));
 hotspotButtons.forEach((button) => {
   ['pointerdown', 'pointerup', 'pointerleave', 'pointercancel'].forEach((type) => {
@@ -1540,6 +1547,48 @@ function updateHeaderVisibility() {
   ticking = false;
 }
 
+function positionPumpOverlay() {
+  const canvas = document.getElementById("simCanvas");
+  const overlay = document.querySelector(".halves-pump-overlay");
+  const stage = document.querySelector(".sim-stage-wrap");
+
+  if (!canvas || !overlay || !stage) return;
+
+  const renderedCanvasWidth = canvas.clientWidth;
+  if (!renderedCanvasWidth) return;
+
+  const baseCanvasWidth = 1320;
+  const baseCanvasHeight = 900;
+
+  const basePumpLeft = 830;
+  const basePumpTop = 200;
+  const pumpScale = 1.2;
+
+  const scale = renderedCanvasWidth / baseCanvasWidth;
+  const renderedCanvasHeight = baseCanvasHeight * scale;
+
+  stage.style.minHeight = `${renderedCanvasHeight + 20}px`;
+
+  overlay.style.left = `${10 + basePumpLeft * scale}px`;
+  overlay.style.top = `${10 + basePumpTop * scale}px`;
+  overlay.style.transform = `scale(${scale * pumpScale})`;
+}
+
+function positionPumpOverlaySafe() {
+  positionPumpOverlay();
+
+  requestAnimationFrame(() => {
+    positionPumpOverlay();
+
+    requestAnimationFrame(() => {
+      positionPumpOverlay();
+    });
+  });
+
+  setTimeout(positionPumpOverlay, 60);
+  setTimeout(positionPumpOverlay, 180);
+}
+
 window.addEventListener('scroll', () => {
   if (!ticking) {
     window.requestAnimationFrame(updateHeaderVisibility);
@@ -1551,3 +1600,7 @@ window.addEventListener('load', () => {
   lastScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
   updateHeaderVisibility();
 });
+
+window.addEventListener("load", positionPumpOverlaySafe);
+window.addEventListener("resize", positionPumpOverlaySafe);
+document.addEventListener("DOMContentLoaded", positionPumpOverlaySafe);
