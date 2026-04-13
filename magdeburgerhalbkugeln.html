@@ -2,7 +2,8 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />  <title>Magdeburger Halbkugeln</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Magdeburger Halbkugeln</title>
   <link rel="stylesheet" href="styles.css" />
   <script defer src="script.js"></script>
 </head>
@@ -142,22 +143,24 @@
             </aside>
             
             <section class="sim-stage-wrap">
-              <canvas id="simCanvas" width="1320" height="900" aria-label="Simulation der Magdeburger Halbkugeln"></canvas>
+              <div class="sim-canvas-stage">
+                <canvas id="simCanvas" width="1320" height="900" aria-label="Simulation der Magdeburger Halbkugeln"></canvas>
 
-              <div class="halves-pump-overlay" aria-hidden="true">
-                <div class="pump-illustration" id="pumpIllustration">
-                  <div class="pump-glass"></div>
-                  <div class="pump-neck"></div>
-                  <div class="pump-funnel"></div>
-                  <div class="pump-column"></div>
-                  <div class="pump-rings"></div>
-                  <div class="pump-piston" id="pumpPiston"></div>
-                  <div class="pump-crossbar"></div>
-                  <div class="pump-lever" id="pumpLever"></div>
-                  <div class="pump-bucket"></div>
-                  <div class="pump-leg pump-leg-left"></div>
-                  <div class="pump-leg pump-leg-center"></div>
-                  <div class="pump-leg pump-leg-right"></div>
+                <div class="halves-pump-overlay" aria-hidden="true">
+                  <div class="pump-illustration" id="pumpIllustration">
+                    <div class="pump-glass"></div>
+                    <div class="pump-neck"></div>
+                    <div class="pump-funnel"></div>
+                    <div class="pump-column"></div>
+                    <div class="pump-rings"></div>
+                    <div class="pump-piston" id="pumpPiston"></div>
+                    <div class="pump-crossbar"></div>
+                    <div class="pump-lever" id="pumpLever"></div>
+                    <div class="pump-bucket"></div>
+                    <div class="pump-leg pump-leg-left"></div>
+                    <div class="pump-leg pump-leg-center"></div>
+                    <div class="pump-leg pump-leg-right"></div>
+                  </div>
                 </div>
               </div>
 
