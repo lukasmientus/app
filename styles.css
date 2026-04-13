@@ -266,19 +266,25 @@ main { flex: 1; width: min(1540px, calc(100% - 24px)); margin: 16px auto 24px; }
 .stat-grid span, .metric span, label { color: var(--muted); }
 .range-value { font-weight: 700; margin-top: -2px; }
 .check-row { display: flex; align-items: center; gap: 10px; color: var(--text); }
+
 .sim-stage-wrap {
-  position: relative; background: linear-gradient(180deg, #ffffff 0%, #f4f8fb 100%);
-  border: 1px solid var(--line); border-radius: 24px; padding: 10px; min-height: 620px;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8fb 100%);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .halves-pump-overlay {
   position: absolute;
-  right: clamp(100px, 40vw, 200px);
-  top: clamp(200px, 25vw, 200px);
+  left: 0;
+  top: 0;
   width: 220px;
   height: 380px;
   z-index: 2;
   pointer-events: none;
+  transform-origin: top left;
 }
 
 .halves-pump-overlay #pumpLever {
@@ -290,6 +296,15 @@ main { flex: 1; width: min(1540px, calc(100% - 24px)); margin: 16px auto 24px; }
   position: relative;
   width: 220px;
   height: 380px;
+}
+
+#simCanvas {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #fefefe 0%, #edf3f7 100%);
+  touch-action: none;
 }
 
 .halves-pump-overlay .pump-glass {
@@ -424,10 +439,6 @@ main { flex: 1; width: min(1540px, calc(100% - 24px)); margin: 16px auto 24px; }
 
 
 
-#simCanvas {
-  width: 100%; height: auto; display: block; border-radius: 18px;
-  background: linear-gradient(180deg, #fefefe 0%, #edf3f7 100%); touch-action: none;
-}
 .hint-bubble {
   position: absolute; left: 18px; bottom: 18px; max-width: 390px;
   background: rgba(25,36,46,0.92); color: #fff; padding: 12px 14px; border-radius: 16px;
